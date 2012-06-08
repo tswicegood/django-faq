@@ -1,5 +1,6 @@
 import os
 from distutils.core import setup
+from faq import VERSION
 
 
 def read(fname):
