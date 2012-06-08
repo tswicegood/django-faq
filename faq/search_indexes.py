@@ -1,5 +1,8 @@
 from haystack import indexes
-from haystack.sites import site
+try:
+    from haystack.sites import site
+except ImportError:
+    site = False
 
 from faq.settings import SEARCH_INDEX
 from faq.models import Topic, Question
@@ -23,5 +26,6 @@ class QuestionIndex(FAQIndexBase):
         return Question.objects.published()
 
 
-site.register(Topic, TopicIndex)
-site.register(Question, QuestionIndex)
+if site:
+    site.register(Topic, TopicIndex)
+    site.register(Question, QuestionIndex)
